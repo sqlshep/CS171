@@ -1,27 +1,27 @@
 
 /* YOUR CSS STYLES */
 
-h1{font-family: Georgia;
+h1{font-family: 'Roboto', sans-serif;
     font-size: 40px;
     color:#000;
     //border-style: solid;
     text-align:center;}
 
 h2, h3 {
-    font-family: Georgia;
+    font-family: 'Roboto', sans-serif;
     color: #000;
     text-align: center;
 / / border-style: solid;
 }
-h4 {font-family: Georgia;
+h4 {font-family: 'Roboto', sans-serif;
     color:#000;
     //text-align:center;
     //border-style: solid;
 }
 
 
-body {font-family: Georgia;
-    font-size: 15px;
+body {font-family: 'Roboto', sans-serif;
+   // font-size: 15px;
     width:100%;
     line-height:2%;
     text-indent:1px;
@@ -29,7 +29,7 @@ body {font-family: Georgia;
     padding-right:1%;
     line-height: 120%;
     background:#F3F3F1;
-    /*background:#2BBBFF;*/
+
 }
 
 hr {
@@ -40,6 +40,20 @@ hr {
     margin-right: auto;
     border-style: solid;
     border-width: 1px;}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 2px;
+}
+
+tr:nth-child(odd){background-color: #D3D3D3}
+tr:nth-child(even){background-color: #fff}
+
 
 .dropdown {
     position: relative;
@@ -86,23 +100,3 @@ div.tooltip {
     opacity: 0.9;
     position: absolute;
 }
-
-/*.node {*/
-    /*cursor: pointer;*/
-/*}*/
-
-/*.node circle {*/
-    /*fill: #fff;*/
-    /*stroke: steelblue;*/
-    /*stroke-width: 3px;*/
-/*}*/
-
-/*.node text {*/
-    /*font: 16px sans-serif;*/
-/*}*/
-
-/*.link {*/
-    /*fill: none;*/
-    /*stroke: #ccc;*/
-    /*stroke-width: 3px;*/
-/*}*/
