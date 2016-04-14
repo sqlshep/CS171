@@ -5,7 +5,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>CS171 Final Project</title>
 
-	<link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Load Google Font -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,400,300,400italic,700' rel='stylesheet' type='text/css'>
+
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
@@ -13,24 +17,86 @@
 
 <br/><br/>
 <img src="img/logo.png" width="50%"  >
+<br/><br/>
 
+<div id="text-carousel" class="carousel slide" data-ride="carousel">
+    <!-- Wrapper for slides -->
+    <!--http://codepen.io/matthewhirsch/pen/OPwQRL-->
+    <div class="row">
+        <div class="col-xs-offset-2 col-xs-8">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <div class="carousel-content">
+                        <div>
+                            <h4>In July 2012, Secretary-General Ban Ki-moon announced the 27 members of a High-level Panel to advise on the global development framework beyond 2015, the target date for the Millennium Development Goals (MDGs).</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="carousel-content">
+                        <div>
+                            <h4>The Panel was co-chaired by President Susilo Bambang Yudhoyono of Indonesia, President Ellen Johnson Sirleaf of Liberia, and Prime Minister David Cameron of the United Kingdom, and included leaders from civil society, private sector and government.</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="carousel-content">
+                        <div>
+                            <h4>The Panel was part of the Secretary-General’s post-2015 initiative mandated by the 2010 MDG Summit. UN Member States have called for open, inclusive consultations involving civil society, the private sector, academia and research institutions from all regions, in addition to the UN system, to advance the development framework beyond 2015.</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="carousel-content">
+                        <div>
+                            <h4>The work of the Panel reflected new development challenges while also drawing on experience gained in implementing the MDGs, both in terms of results achieved and areas for improvement</h4>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Controls -->
+    <a class="left carousel-control" href="#text-carousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#text-carousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+
+</div>
+
+<hr/>
 
 <div class="container-fluid">
 	<div class="row">
 
-		<div class="col-md-12" id ="page1Col2"><br><h4>MY World is a global survey for citizens led by the United Nations and partners.
-                    It aims to capture people's voices, priorities and views, so that global leaders can be informed as they begin the
-                    process of defining the new development agenda for the world.
+		<div class="col-md-6" id ="page1Col1"><br><h5>MY World is a global survey for citizens led by the United Nations
+                and partners. It aims to capture people's voices, priorities and views, so that global leaders can be
+                informed as they begin the process of defining the new development agenda for the world.
                 <br/><br/>
-                    Through creative online and offline methods, MY World asks individuals which six of sixteen possible issues they
-                    think would make the most difference to their lives. The sixteen issues have been built up from the priorities
-                    expressed by poor people in existing research and polling exercises and they cover the existing Millennium
-                    Development Goals, plus issues of sustainability, security, governance and </h4>
+                Through creative online and offline methods, MY World asks individuals which six of
+                sixteen possible issues they think would make the most difference to their lives. The sixteen
+                issues have been built up from the priorities expressed by poor people in existing research and polling
+                exercises and they cover the existing Millennium Development Goals, plus issues of sustainability, security,
+                governance and transparency.</h5>
 
-
-	</div>
+	    </div>
+        <div class="col-md-6" id ="page1Col2"><br><h5>Through 2015, as many people in as many countries
+                as possible were involved with MY World: citizens of all ages, genders and backgrounds, and particularly
+                the world’s poor and marginalized communities.
+                <br/><br/>
+                Results were firstly submitted to the Secretary General´s High Level Panel for Post-2015 before their
+                meetings in Monrovia, Bali and New York and will feed into their final report and recommendations for a new
+                development framework in May 2013.
+                <br/><br/>
+                Afterwhich, MY World will continue gathering people´s voices up to 2015 and results will be shared with
+                the Secretary General and global leaders as they prepare the next development agenda in the run up to 2015.</h5>
+            
+        </div>
 </div>
-<hr/>
+
 <br/><br/>
 <h3><div id="countryName">  </div></h3>
 <div class="container-fluid">
@@ -151,13 +217,13 @@
 			<!--</form>-->
 
 <div id ="map-area">*</div>
-    <h4>*Population in Thousands</h4>
+    <h4>* Legend Population in Thousands</h4>
 
 <hr/>
 
 
 
-<h1>Visualization-2</h1>
+<h1>Visualization-2  Casey </h1>
 
 <div id ="Visualization-2"></div>
 
@@ -198,13 +264,53 @@
 
 <hr/>
 
-<h1> Visualization-3 </h1>
+<h1> Visualization-3 Vidya </h1>
 
+<div class="container-fluid">
 
-<div id ="Visualization-3"> </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h1>What Factors Motivate Priorities ? </h1>
+            <!-- Visualization placeholders -->
+            <div class="form-group">
+                <label for="rankingType">Select Demographic Variable</label>
+                <select class="form-control" id="rankingtype" onchange="myScatter.updateData()">
+                    <option value="HDI">Human Development Index</option>
+                    <option value="LifeExpectancy">Life Expectancy</option>
+                    <option value="ExpectedSchool">Expected Years of Schooling</option>
+                    <option value="MeanSchool">Mean Years of Schooling</option>
+                    <option value="GNI">Gross National Income Per Capita</option>
+                    <option value="Population">Population</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="rankingType">Select Survey Priority</label>
+                <select class="form-control" id="rankingtype1" onchange="myScatter.updateData()">
+                    <option value="x100">Action taken on climate change</option>
+                    <option value="x101">Better transport and roads</option>
+                    <option value="x102">Support for people who can't work</option>
+                    <option value="x103">Access to clean water and sanitation</option>
+                    <option value="x104">Better healthcare</option>
+                    <option value="x105">A good education</option>
+                    <option value="x106">A responsive government we can trust</option>
+                    <option value="x107">Phone and internet access</option>
+                    <option value="x108">Reliable energy at home</option>
+                    <option value="x109">Affordable and nutritious food</option>
+                    <option value="x110">Protecting forests, rivers and oceans</option>
+                    <option value="x111">Political freedoms</option>
+                    <option value="x112">Protection against crime and violence</option>
+                    <option value="x113">Freedom from discrimination and persecution</option>
+                    <option value="x114">Equality between men and women</option>
+                    <option value="x115">Better job opportunities</option>
+                </select>
+            </div>
+            <div id="scatterVB"></div>
+        </div>
+    </div>
+
+</div>
 
 <hr/>
-
 
 
 <div class="container-fluid">
@@ -246,9 +352,9 @@
 
 
 <hr/>
+ß
 
-
-<h1>Visualization-4</h1>
+<h1>Visualization-4 Ben</h1>
 
 <div id ="Visualization-4"></div>
 
@@ -266,6 +372,7 @@
 
 	<!-- Choropleth and second visualization -->
 	<script src="js/main.js"></script>
+    <script src="js/scatter.js"></script>
 	<script src="js/vis-choropleth.js"></script>
 
 	

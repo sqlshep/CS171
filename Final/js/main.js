@@ -1,7 +1,28 @@
-///**
-// * Created by Shep on 3/28/16.
-// */
-//
-//var margin = {top: 20, right: 20, bottom: 20, left: 20},
-//    width =  1400  - margin.left - margin.right,
-//    height = 900 - margin.top - margin.bottom;
+
+// Will be used to the save the loaded JSON data
+var allData = [];
+
+
+// Date parser to convert strings to date objects
+var parseDate = d3.time.format("%Y").parse;
+
+// Variables for the visualization instances
+var myScatter;
+
+
+// Start application by loading the data
+loadData();
+
+function loadData() {
+    d3.csv("data/PriorityAndDemographics.csv", function(error, csvData){
+        if(!error){
+            allData = csvData;
+            createVis();
+        }
+    });
+}
+
+function createVis() {
+    myScatter = new ScatterPlot("scatterVB",allData);
+}
+
