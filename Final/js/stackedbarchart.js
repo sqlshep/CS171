@@ -354,7 +354,7 @@ d3.select("#selectissue").on("change", wrangleData);
     function updateVis() {
 
         // First we have to remove the existing SVG and create a fresh one (to clear existing drawings)
-        d3.select(".removable").remove();
+//        d3.select(".removable").remove();
 
         svg = d3.select(".stackedbarchart").append("svg")
             .attr("width", cwidth + cmargin.left + cmargin.right)
