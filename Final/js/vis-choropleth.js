@@ -7,7 +7,7 @@ d3.select(window).on("resize", throttle);
 var mapWidth = document.getElementById('map-area').offsetWidth ;
 var mapHeight = mapWidth / 2 ;
 
-//console.log(mapWidth, " ", mapWidth);
+console.log(mapWidth, " ", mapWidth);
 
 var color = d3.scale.linear()
     .range(colorbrewer.RdYlGn[11]);
@@ -18,7 +18,9 @@ var zoom = d3.behavior.zoom()
     .scaleExtent([1, 6])
     .on("zoom", move);
 
-var topo,projection,path,svg, g,countries,domainRange,maxValue, UNpopulation,UNPri;
+var topo,projection,path,svg, g,countries,domainRange,maxValue,UNPri;
+
+//var UNpopulation;
 
 var labelWidth = 15, labelHeight = 15;
 
@@ -34,19 +36,22 @@ function loadData() {
 
     queue()
         .defer(d3.json, "data/world-topo.json")
-        .defer(d3.csv, "data/UN-Population.csv")
-        .defer(d3.csv, "data/TotalVotesPerPriorityByCountry.csv")
+        //.defer(d3.csv, "data/UN-Population.csv")
+        //.defer(d3.csv, "data/TotalVotesPerPriorityByCountry.csv")
+        .defer(d3.csv, "data/Shep-Priority.csv")
         //.defer(d3.csv, "data/Priority.csv")
-        .await(function (error, world, population,priorities ) {
+        .await(function (error, world,priorities ) {
             countries = topojson.feature(world, world.objects.countries).features;
-            UNpopulation = population;
+            //UNpopulation = population;
             UNPri = priorities;
             //console.log(UNPri);
 
+
+            //console.log("Countries = ",countries);
+            console.log("UNPri = ", UNPri);
+
             wrangleData();
 
-            //console.log(countries);
-            //console.log(population);
             topo = countries;
 
             drawMap();
@@ -145,7 +150,10 @@ function draw(topo) {
                 .html(d.properties.name +
                     "<br>Population: " + (d.properties.population*1000).toLocaleString('en') +
                     "<br>Total Votes: " + d.properties.TotalVotes.toLocaleString('en')+
-                    "<br>HDI: " + "100"
+                    "<br>HDI: " + d.properties.HDI.toLocaleString('en') +
+                    "<br>GNI: " + d.properties.GNI.toLocaleString('en') +
+                    "<br>Mean School Years: " + d.properties.MeanSchool.toLocaleString('en') +
+                    "<br>Life Expectancy: " + d.properties.LifeExpectancy.toLocaleString('en')
                 )
                 updateTable(d);
         })
@@ -238,14 +246,21 @@ function wrangleData(){
 
     for (var i = 0; i < countries.length; i++){
 
-        for (var j = 0 ; j < UNpopulation.length; j++){
-            if(countries[i].properties.name.toUpperCase() == UNpopulation[j].Country.toUpperCase()) {
-                countries[i].properties.population = parseInt(UNpopulation[j].population);
-                countries[i].properties.continent = UNpopulation[j].Continent;
-            }
-        }
+        //for (var j = 0 ; j < UNpopulation.length; j++){
+        //    if(countries[i].properties.name.toUpperCase() == UNpopulation[j].Country.toUpperCase()) {
+        //        countries[i].properties.population = parseInt(UNpopulation[j].population);
+        //        countries[i].properties.continent = UNpopulation[j].Continent;
+        //    }
+        //}
         for (var k = 0 ; k < UNPri.length; k++){
+            //console.log(countries[i].properties.name.toUpperCase());
             if(countries[i].properties.name.toUpperCase() == UNPri[k].countryName.toUpperCase()){
+                countries[i].properties.HDI = parseFloat(UNPri[k].HDI);
+                countries[i].properties.ExpectedSchool = parseFloat(UNPri[k].ExpectedSchool);
+                countries[i].properties.GNI = parseInt(UNPri[k].GNI);
+                countries[i].properties.MeanSchool = parseFloat(UNPri[k].MeanSchool);
+                countries[i].properties.population = parseInt(UNPri[k].Population);
+                countries[i].properties.LifeExpectancy = parseFloat(UNPri[k].LifeExpectancy);
                 countries[i].properties[100] = parseInt(UNPri[k][100]);
                 countries[i].properties[101] = parseInt(UNPri[k][101]);
                 countries[i].properties[102] = parseInt(UNPri[k][102]);
@@ -285,10 +300,14 @@ function wrangleData(){
     //
     //}
 
+    console.log("Countries = ",countries);
+
 }
 function updateTable(d){
 
     document.getElementById('countryName').innerHTML = d.properties.name.toLocaleString('en');
+
+
     document.getElementById('Pri-100').innerHTML = d.properties[100].toLocaleString('en');
     document.getElementById('PriPer-100').innerHTML =((d.properties[100]/d.properties.TotalVotes)* 100).toFixed(2)+"%";
     document.getElementById('Pri-101').innerHTML = d.properties[101].toLocaleString('en');

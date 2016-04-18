@@ -1,6 +1,54 @@
 
 /* YOUR CSS STYLES */
 
+/* OnOff switch source: https://proto.io/freebies/onoff/ */
+.onoffswitch {
+    position: relative; width: 104px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #999999; border-radius: 20px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 13px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "Continent";
+    padding-left: 7px;
+    background-color: #0000FF; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "Country";
+    padding-right: 7px;
+    background-color: #FF0000; color: #FFFFFF;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 18px; margin: 6px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 70px;
+    border: 2px solid #999999; border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px;
+}
+
+
 h1{font-family: 'Roboto', sans-serif;
     font-size: 40px;
     color:#000;
@@ -15,13 +63,22 @@ h2, h3 {
 }
 h4 {font-family: 'Roboto', sans-serif;
     color:#000;
-    //text-align:center;
-    //border-style: solid;
+
 }
 
+h6 {font-family: 'Roboto', sans-serif;
+    font-size: 11px;
+    color:#000;
+
+}
+p {font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color:#000;
+
+}
 
 body {font-family: 'Roboto', sans-serif;
-   // font-size: 15px;
+    font-size: 14px;
     width:100%;
     line-height:2%;
     text-indent:1px;
@@ -110,6 +167,73 @@ div.tooltip {
 
 #text-carousel {
     width: 100%;
-    height: auto;
+    height: 125px;
     padding: 25px;
 }
+
+/*********************/
+/*  TOOLTIP OVERLAY  */
+/*********************/
+
+.tooltip-title {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.d3-tip {
+    line-height: 1;
+    font: 13px sans-serif;
+    /*font-family: Arial;*/
+    padding: 12px;
+/*//  background: rgba(0, 0, 0, 0.8);*/
+    background: black;
+/*//  color: #fff;*/
+    color: white;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+    box-sizing: border-box;
+    display: inline;
+    font-size: 10px;
+    width: 100%;
+    line-height: 1;
+//  color: rgba(0, 0, 0, 0.8);
+    color: black;
+    content: "\25BC";
+    position: absolute;
+    text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+    margin: -1px 0 0 0;
+    top: 100%;
+    left: 0;
+}
+
+
+.axis {
+    font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.bar {
+    fill: steelblue;
+}
+
+.x.axis path {
+    display: none;
+}
+
+
